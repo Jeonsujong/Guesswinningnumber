@@ -44,4 +44,4 @@
 4. https://www.youtube.com/watch?v=0ctsMb9qL1k&list=PLWO_EXTnt3sO9SOgCaLCf-WECN6Xk7vQ6&index=10(루비-배열Array)
 5. https://tosbourn.com/set-intersection-in-ruby/
 6. http://jinbroing.tistory.com/41 (루비 기초편 -Array)
-7. https://www.joinc.co.kr/w/Site/Ruby/UserGuide/arrays(루비 사용자 가이드 -배열)
+7. https://www.joinc.co.kr/w/Site/Ruby/UserGuide/arrays (루비 사용자 가이드 -배열)
