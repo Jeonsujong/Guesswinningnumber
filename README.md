@@ -1,26 +1,47 @@
 # 3주차 첼린지 로또
 
-로또 번호 추천 프로그램을 만들어보자.
-로또 api를 이용해 이번 주 당첨정보를 받아와 비교해보자.
+### 구현의도
 
-(api에 관련된 부분의 코드는 이미 적혀있습니다.)
+1~45까지의 숫자 중 6개를 랜덤으로 뽑아 이번주 당첨번호와 비교하는 프로그램을 만든다.
 
-1~45까지의 숫자 중 6개를 랜덤으로 뽑아 이번주 당첨번호와 비교하는 프로그램을 만들어주세요!
+### 오류 내용 / 해결 방법
 
-1. `config/routes.rb`에서 root경로 지정해주기
-2. `app/controllers/lotto_controller.rb` 에 코드 추가하기
-3. `app/views/lotto/index.html.erb`, `app/views/lotto/pick_and_check.html.erb` 코드 추가
+오류는 주로 따옴표를 닫지 않았다던지, 태그를 닫지 않은 것에서 발생했다.
+그리고 주목할만한 오류 해결은 
 
+    if(ran_numbers.include?(ran_bonus)) == true
+       until(ran_numbers.include?(ran_bonus)) != true
+             ran_bonus = rand(1..45)
+       end
+    end
+    
+위와 같은 코드를 만드는 과정에 있었다.
+초기에 나는 
+    if(ran_numbers.include?(ran_bonus)) == true
+        ran_bonus = rand(1..45)
+    end
+    
+이것으로 코딩을 마쳤었다. 그리고 드디어 보너스 번호를 무작위로 뽑을 때에 성공했다고 생각했었다.
+하지만 새로고침을 계속 하다보니(코드를 검증하는데 더 효율적인 방법을 생각하지 못해 오른손 검지를 끊임없이 움직였다..)
+치명적인 오류가 있다는 것을 발견했다. 최초의 ran_bonus 값에 이미 추첨된 6가지 숫자가 있다면 그것을 걸러내고 ran_bonus 값을 다시 설정했지만,
+다시 설정한 새로운 ran_bonus 값이 6개의 이미 추첨된 숫자와 중복될 수 있는 가능성을 배제하지 못한 것이다. 
+위와 같은 결점을 보완하기 위해 until(ran_numbers.include?(ran_bonus) != true 를 이용했다.
+즉, 새로운 보너스 숫자가 이미 추첨된 6개 숫자가 겹치지 않을 때까지 계속해서 무작위로 생성하는 것이다.
+이 방법을 통해 최종적으로 원하는 결과를 얻을 수 있었다.
 
+### 간단한 소감
 
-#### 유의사항
-- json에 대한 설명은 주석으로 되어있으므로 읽고 해주세요.
+프로그램을 만든다는 것은 내게 아직까지도 익숙하지 않은 것 같다. 그래서 오래 고민하고 손으로 써보고, 도움이 될만한 것들을 뒤져보며 이해하고자 노력하는데에 많은 시간을 쏟아부어야만 한다.
+이번 챌린지 또한 예외는 아니었고, 어떻게 시작해야할지 감조차 잡기 힘들었다. 때문에 해결하기 위해 굉장히 많은 시간을 보냈다. 시간을 보내면서도 해내지 못할 것 같았다.
+하지만 결국 해냈다. 엄청난 코드를 작성한 것은 아니지만, 뿌듯하다. 모르는 것을 배우는(하는) 두려움은 찰나지만, 새로운 것을 배우는(아는) 여운은 길다고 한다. 이번 챌린지를 통해 가장 와닿은 말이 아닌가 싶다.
+결과적으로는 해냈지만, 전체적으로 부족함을 느낀다. 더욱 더 효율적이고 직관적으로 만들고 싶다. 그 시작은 매번 두렵고 거대해보일지라도 결국 해낼 것이다. 그런 자신감을 이번 챌린지 해결을 통해 얻었다.
 
+### 참고문서
 
-## Author
-
-written by [정다혜](https://dh00023.github.io).
-
-![](https://avatars.githubusercontent.com/dh00023?v=2&s=100)
-
-<a href="https://dh00023.github.io" target="_blank" class="btn btn-black"><i class="fa fa-github fa-lg"></i> Visit on Github Page &rarr;</a>
+1. [강의자료]2주차_Ruby 기본개념.pdf
+2. Ruby_ppt.pdf
+3. https://opentutorials.org/module/11/254 (루비 튜토리얼)
+4. https://www.youtube.com/watch?v=0ctsMb9qL1k&list=PLWO_EXTnt3sO9SOgCaLCf-WECN6Xk7vQ6&index=10(루비-배열Array)
+5. https://tosbourn.com/set-intersection-in-ruby/
+6. http://jinbroing.tistory.com/41 (루비 기초편 -Array)
+7. https://www.joinc.co.kr/w/Site/Ruby/UserGuide/arrays(루비 사용자 가이드 -배열)

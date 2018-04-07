@@ -30,22 +30,50 @@ class LottoController < ApplicationController
     # 여기서 부터 코드를 작성해 주세요. 로또 번호 6개 랜덤생성 후 정렬.
     # 이번주 당첨번호와 비교해서 1등부터 6등까지의 결과를 출력해내세요.
 
+    
+    ran_numbers = (1..45).to_a.sample(6)
+    ran_numbers.sort!
 
-
-
-
-
-
-
-
-
-
+    ran_bonus = rand(1..45)
+    
+    if(ran_numbers.include?(ran_bonus)) == true
+       until(ran_numbers.include?(ran_bonus)) != true
+             ran_bonus = rand(1..45)
+       end
+    end
+    
+    if (drw_numbers & ran_numbers) == []
+      intersection = "빵개ㅠㅠ"
+    else
+      intersection = (drw_numbers & ran_numbers)
+    end    
+    
+    
+    if (ran_numbers & drw_numbers).size == 6
+        result = "1등입니다!!!! 대박!! 1게임당 당첨금액은 약 16억"
+    elsif (ran_numbers & drw_numbers).size == 5 && (ran_bonus == bonus_number)
+            result = "2등입니다!!! 대박! 1게임당 당첨금액은 약 5,800만원"
+    elsif (ran_numbers & drw_numbers).size == 5
+            result = "3등입니다!! 오오! 1게임당 당첨금액은 약 130만원"
+    elsif (ran_numbers & drw_numbers).size == 4
+            result = "4등이닭! 저녁은 치킨이닭! 1게임당 당첨금액은 5만원"
+    elsif (ran_numbers & drw_numbers).size == 3
+            result = "5등이네요.. 당첨금을 다시 로또를 사는데 씁니다. 1게임당 당첨금액은 5천원"
+    else
+            result = "꽝! 로또는 인생의 낭비..."
+    end
+    
+    
+    
 
 
     # 인스턴스에 변수를 저장해주세요!
     @drw_numbers = drw_numbers
     @bonus_number = bonus_number
-
+    @ran_numbers = ran_numbers
+    @ran_bonus = ran_bonus
+    @intersection = intersection
+    @result = result
     # 추가생성한 변수들 인스턴스로 지정.
 
   end
