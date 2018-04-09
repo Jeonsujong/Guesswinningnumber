@@ -36,8 +36,8 @@ class LottoController < ApplicationController
 
     ran_bonus = rand(1..45)
     
-    if(ran_numbers.include?(ran_bonus)) == true
-       until(ran_numbers.include?(ran_bonus)) != true
+    if(ran_numbers.include?(ran_bonus))
+       until(!ran_numbers.include?(ran_bonus))
              ran_bonus = rand(1..45)
        end
     end
@@ -52,15 +52,15 @@ class LottoController < ApplicationController
     if (ran_numbers & drw_numbers).size == 6
         result = "1등입니다!!!! 대박!! 1게임당 당첨금액은 약 16억"
     elsif (ran_numbers & drw_numbers).size == 5 && (ran_bonus == bonus_number)
-            result = "2등입니다!!! 대박! 1게임당 당첨금액은 약 5,800만원"
+        result = "2등입니다!!! 대박! 1게임당 당첨금액은 약 5,800만원"
     elsif (ran_numbers & drw_numbers).size == 5
-            result = "3등입니다!! 오오! 1게임당 당첨금액은 약 130만원"
+        result = "3등입니다!! 오오! 1게임당 당첨금액은 약 130만원"
     elsif (ran_numbers & drw_numbers).size == 4
-            result = "4등이닭! 저녁은 치킨이닭! 1게임당 당첨금액은 5만원"
+        result = "4등이닭! 저녁은 치킨이닭! 1게임당 당첨금액은 5만원"
     elsif (ran_numbers & drw_numbers).size == 3
-            result = "5등이네요.. 당첨금을 다시 로또를 사는데 씁니다. 1게임당 당첨금액은 5천원"
+        result = "5등이네요.. 당첨금을 다시 로또를 사는데 씁니다. 1게임당 당첨금액은 5천원"
     else
-            result = "꽝! 로또는 인생의 낭비..."
+        result = "꽝! 로또는 인생의 낭비..."
     end
     
     
